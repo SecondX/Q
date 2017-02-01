@@ -8,7 +8,7 @@ from restaurants.models import Restaurant, Food, Comment
 from django.utils import timezone
 from django.template import RequestContext
 
-
+import logging
 def menu(request):
     #path = request.path
     if 'id' in request.GET and len(request.GET['id']) > 0:
@@ -33,7 +33,8 @@ def comment(request, request_id):
         email = request.POST['email']
         date_time = timezone.localtime(timezone.now())
         Comment.objects.create(visitor=visitor, content=content, email=email, date_time=date_time, restaurant=r)
-        f = CommentForm()
+        visitor, email, content = ('','','')
+        form = CommentForm()
     return render(request, 'comments.html', locals())
 
 
