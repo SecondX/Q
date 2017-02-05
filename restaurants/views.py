@@ -3,7 +3,8 @@ from django.shortcuts import render_to_response,render
 #from django.views.decorators.csrf import requires_csrf_token
 from restaurants.forms import CommentForm
 
-from django.http import HttpResponseRedirect
+from django.contrib.sessions.models import Session
+from django.http import HttpResponseRedirect, HttpResponse
 from restaurants.models import Restaurant, Food, Comment
 from django.utils import timezone
 from django.template import RequestContext
@@ -37,4 +38,24 @@ def comment(request, request_id):
         form = CommentForm()
     return render(request, 'comments.html', locals())
 
+
+def set_c(request):
+    response = HttpResponse('Set cookie as 8')
+    response.set_cookie('number', 8)
+    return response
+
+def get_c(request):
+    if 'number' in request.COOKIES:
+        return HttpResponse('got a number {}'.format(request.COOKIES['number']))
+    else:
+        return HttpResponse('No Cookie')
+
+def session_test(request):
+    if not request.session.session_key:
+        request.session.save()
+    sid = request.session.session_key
+    s = Session.objects.get(pk=sid)
+    s_info = 'Session ID:{0}<br>Expire Date:{1}<br>Data:{2}'.format(sid, str(s.expire_date), str(s.get_decoded()))
+    # s_info = 'session ID:'+sid
+    return HttpResponse(s_info)
 
