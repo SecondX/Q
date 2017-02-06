@@ -38,7 +38,7 @@
 	    <form action="/menu/" method="get">
 	    <table class="table">
 		    <tr>
-			    <th>選取</th>
+			    <th>看菜單</th>
 			    <th>店名</th>
 			    <th>電話</th>
 			    <th>地址</th>
@@ -46,15 +46,16 @@
 		    </tr>
 	    	{% for r in restaurants %}
 		    <tr>
-			    <td> <input type="radio" name="id" value="{{r.id}}"</td>
+			    <!-- <td> <input type="radio" name="id" value="{{r.id}}"</td> -->
+			    <td><a href="/menu/{{ r.id }}">菜單</a></td>
 			    <td> {{r.name}} </td>
 			    <td> {{r.phone_number}} </td>
 			    <td> {{r.address }}</td>
 			    <td> <a href="/comment/{{r.id}}/">評價</a></td>
 		    </tr>
-		    {% endfor %}
+		    <!-- {% endfor %} -->
 	    </table>
-	    <input type="submit" value="查看menu">
+	    <!-- <input type="submit" value="查看menu"> -->
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"</script>
     </body>

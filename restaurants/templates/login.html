@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <title>Menu</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+        <style>
+            div.login {
+                text-align: center;
+                margin-top: 45px;
+                    padding: 40px 15px;
+            }
+        </style>
+    </head>
+        {% comment%}
+        comments
+        pipe
+        {% endcomment%}
+    <body>
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header" align="center">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="">當成標題的一顆假按鈕</a>
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="login">
+                <form action"" method="post">
+                    {% csrf_token %}
+                    <label for="username">Name:</label></br>
+                    <input type="text" name="username" value="{{ username }}" id="username"><br />
+                    <label for="password">Password:</label><br/>
+                    <input type="text" name="password" value="{{ password }}" id="password"><br />
+                    <input type="submit" value="Login" />
+                </form>
+                {% if login_fail %}
+                <p><label color="red">Username or Password wrong!!</label></p>
+                {%endif%}
+            </div>
+        </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    </body>
+</html>

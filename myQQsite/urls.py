@@ -14,16 +14,25 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import include, url
-from restaurants.views import menu, list_restaurants,comment,set_c,get_c
+from restaurants.views import menu, list_restaurants,comment,set_c,get_c,index
+from restaurants.views import IndexView, RestaurantView, MenuView
+# from restaurants.views import login,logout
+from django.contrib.auth.views import login, logout
 from restaurants.views import session_test
 from django.contrib import admin
 
 urlpatterns = [
-    url(r'^menu/$', menu),
+    # url(r'^menu/$', menu),
+    url(r'^menu/(?P<id>\d+)$', MenuView.as_view()),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^restaurants_list/', list_restaurants),
+    # url(r'^restaurants_list/', list_restaurants),
+    url(r'^restaurants_list/', RestaurantView.as_view()),
     url(r'^comment/(\d{1,5})/$', comment),
     url(r'setcookie/', set_c),
     url(r'getcookie/', get_c),
     url(r'sessiontest/', session_test),
+    url(r'login/', login),
+    url(r'logout/', logout),
+    # url(r'index/', index),
+    url(r'index/', IndexView.as_view()),
 ]
